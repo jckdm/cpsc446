@@ -1,0 +1,11 @@
+1. The overarching question I answered was "What does HIV look like in the USA?" More narrowly, my data focused on the years 2011–2017.
+For the age data, I tried to answer questions such as "How is the age at which people are diagnosed with HIV changing? The age at which they're dying? How old are they currently? How is that changing?"
+For the race data, I tried to answer questions such as "Who has HIV? How is that changing?"
+For the transmission data, I tried to answer questions such as "How is HIV transmitted to men? To women? To children? How is this changing over time?"
+
+2. I collected data from the Department of Health & Human Services. The data was in four parts: age, race, gender, and transmission type. I encoded age, race, and transmission type. I added a slider to allow users to segment the data by year, to allow for higher information density.
+With the race data, I derived percentages to better compare parts to the whole. These percentages are calculated live as the slider is slid along its axis.
+
+3. I visualized the age data with bar graphs to show an overall shape and trend. 
+I visualized the race data with donut charts to show how each part (race) relates to the whole. The chart starts at 12 o'clock and is sorted from least to greatest.
+I visualized the transmission type as stacked bar charts to show each part to each whole (each type of male transmission to all cases of male transmission).

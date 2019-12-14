@@ -1,0 +1,154 @@
+<html>
+    <head>
+      <style>
+
+      html{
+       font-family: "arial";}
+      div {
+        background-color: lightgray;}
+      </style>
+
+        <title>Assignment 1</title>
+        <h1>Assignment 1</h1>
+        <h1>Savings and Desired Purchases in 5 Years</h1>
+
+        <script type="text/javascript">
+
+      // Get the input for this comparison
+          var sav_p_c = prompt("Enter return on savings (percent)");
+          var inf_p_c = prompt("Enter inflation rate (percent) ");
+
+      // Description of the people
+          var people = [
+      	{
+      		name: "Alice",
+      		savings: 1000,
+      		thing1: "car",
+      		thing2: "boat"
+      	},
+      	{
+      		name: "Bob",
+      		savings: 5000,
+      		thing1: "car",
+      		thing2: "condo",
+      	},
+      	{
+      		name: "Carol",
+      		savings: 7000,
+      		thing1: "boat",
+      		thing2: "condo",
+      	}
+      	];
+
+      // How much things cost
+      	var things = [
+      	{
+      		label: "car",
+      		value: 500,
+      	},
+      	{
+      		label: "boat",
+      		value: 400,
+      	},
+      	{
+      		label: "condo",
+      		value: 5000,
+      	}
+      	];
+
+
+      // Compute the factors for growth over 5 years given the input percentages, hint: use Math.pow
+          var five_year_s = Math.pow((1 + ((sav_p_c / 100) / 1)), (1 * 5));
+
+          var five_year_i = Math.pow((1 + ((inf_p_c / 100) / 1)), (1 * 5));
+
+      // Compute how much the total current cost the things each person wants to buy
+      // You need to fill in the function sumCosts
+      // for people[0] with name Alice, costs[0] should be 900 for the car and the boat
+          costs = sumCosts(people,things);
+
+      // Compute the maximum value for costs or savings so that all data fits on the diagram.
+      // You should look up and understand what .map does
+      var scale = Math.max(Math.max.apply(Math, people.map(function(o) {
+              return five_year_s * o.savings;
+          })),
+          Math.max.apply(Math, costs.map(function(o) {
+              return five_year_i * o;
+          })));
+
+
+          document.write("<hr> <h2> 2019 savings and costs </h2>");
+          createDiagram(people,costs,1,1);
+
+          document.write("<hr> <h2> 2024, assuming investment return " + sav_p_c + " percent and inflation " + inf_p_c + " percent </h2>");
+          createDiagram(people,costs,five_year_i,five_year_s);
+
+
+      // Here is a function to look up the value of each thing each person wants to buy
+      // and return an array where element i is the cost of purchases for people[i]
+      function sumCosts(p, t) {
+          var ncosts = [];
+
+          for (var i = 0; i < p.length; i++) {
+              var tempSum = 0;
+              for (var j = 0; j < t.length; j++) {
+                  if (p[i].thing1 == t[j].label) {
+                      tempSum += t[j].value;
+                  }
+                  if (p[i].thing2 == t[j].label) {
+                      tempSum += t[j].value;
+                  }
+              }
+              ncosts[i] = tempSum;
+          }
+          return ncosts;
+      }
+
+      // Create the diagram for savings and costs, right now only savings shown
+      // In addition to bars for purchases, you need to add text to show the names
+
+      function createDiagram(p, t, a, b) {
+          var x_pos = 50;
+          var y_pos = 0;
+
+          var output = "<div> <svg width='1000' height='400'>";
+
+          for (var i = 0; i < p.length; i++) {
+
+              var height = (parseInt(b * p[i].savings * 250 / scale));
+              var costHeight = (parseInt(a * t[i] * 250 / scale));
+
+              output += "<rect x= '" + x_pos;
+              output += "' y= '" + (350 - height);
+              output += "' width='50' height = '" + height + "' fill= 'black' />";
+
+              output += "<text x='" + (x_pos + 34);
+              output += "' y= '" + 375;
+              output += "'font-family='arial' font-size='14'>" + p[i].name + "</text>";
+
+              output += "<text x='" + (x_pos + 4);
+              output += "' y= '" + (365 - height);
+              output += "'font-family='arial' fill='white' font-size='10'> $" + (p[i].savings * b).toFixed(2) + "</text>";
+
+              x_pos += 50;
+
+              output += "<rect x= '" + x_pos;
+              output += "' y= '" + (350 - costHeight);
+              output += "' width='50' height = '" + costHeight + "' fill= 'red' />";
+
+              output += "<text x='" + (x_pos + 3);
+              output += "' y= '" + (365 - costHeight);
+              output += "'font-family='arial' fill='white' font-size='10'> $" + (t[i] * b).toFixed(2) + "</text>";
+
+              x_pos += 200;
+          }
+
+          output += "  </svg> </div> ";
+          document.write(output);
+      }
+
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

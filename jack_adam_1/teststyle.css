@@ -1,0 +1,36 @@
+body {
+  background-color: #834821;
+  padding-left: 150px;
+  padding-top: 70px;
+}
+
+h1 {
+  color: #F9D748;
+  font-family: Comic Sans MS;
+  font-size: 65px;
+}
+
+p {
+  background-color: #F1DEB8;
+  color: #973430;
+  font-family: Arial;
+  font-size: 34px;
+  width: 925px;
+}
+
+li {
+  background-color: #FDF0D8;
+  color: #C3884C;
+  font-family: Arial;
+  font-size: 34px;
+  width: 925px;
+}
+
+div {
+  background-color: #FDF0D8;
+  max-width: 925px;
+}
+
+.highlight {
+  color: #ED6D51;
+}
